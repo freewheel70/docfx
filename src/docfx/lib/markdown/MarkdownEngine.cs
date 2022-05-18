@@ -99,7 +99,9 @@ internal class MarkdownEngine
 
                 s_status.Value!.Push(status);
 
-                return Markdown.ToHtml(markdown, _pipelines[(int)pipelineType]);
+                var html = Markdown.ToHtml(markdown, _pipelines[(int)pipelineType]);
+
+                return html;
             }
             finally
             {
