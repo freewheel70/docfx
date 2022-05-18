@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7",
+    "vscode-oniguruma": "^1.6.1",
+    "vscode-textmate": "^6.0.0",
+    "yargs": "^17.3.1"
+  }
+}
