@@ -19,6 +19,7 @@
     <PackageReference Include="Glob" Version="1.1.9" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.42" />
     <PackageReference Include="HtmlReaderWriter" Version="1.0.0" />
+    <PackageReference Include="Jering.Javascript.NodeJS" Version="6.3.1" />
     <PackageReference Include="LibGit2Sharp.NativeBinaries" Version="2.0.314" />
     <PackageReference Include="Microsoft.ApplicationInsights" Version="2.20.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.DependencyCollector" Version="2.20.0" />
@@ -50,6 +51,24 @@
   <ItemGroup>
     <ProjectReference Include="../Microsoft.Docs.MarkdigExtensions/Microsoft.Docs.MarkdigExtensions.csproj" />
     <ProjectReference Include="../Microsoft.Docs.Build.Specialized/Microsoft.Docs.Build.Specialized.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="./lib/code-highlighting/grammars/**">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DestinationFolder>grammars</DestinationFolder>
+    </Content>
+    <Content Include="./lib/code-highlighting/theme/**">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DestinationFolder>theme</DestinationFolder>
+    </Content>
+    <Content Include="./lib/code-highlighting/script/**">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DestinationFolder>script</DestinationFolder>
+    </Content>
+    <Content Include="./lib/code-highlighting/*.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

@@ -3,7 +3,9 @@
 
 namespace Microsoft.Docs.Build;
 
-internal class TextmateHelper
+internal enum ThemeType
 {
-
+    Light,
+    Dark,
+    HCDark,
 }

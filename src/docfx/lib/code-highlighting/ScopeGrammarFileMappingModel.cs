@@ -5,7 +5,7 @@ namespace Microsoft.Docs.Build;
 
 internal class ScopeGrammarFileMappingModel
 {
-    public string? Lang { get; init; }
-
     public string? Scope { get; init; }
+
+    public string? Grammar { get; init; }
 }

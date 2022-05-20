@@ -7,19 +7,16 @@ internal class ThemeRule
 {
     private readonly string _rawSelector;
 
-    private readonly TokenColorizationSetting _settings;
-
-    public TokenRule Rule { get; init; }
+    public TokenRule TokenRule { get; init; }
 
     public string Scope { get; init; } = string.Empty;
 
     public string[] ParentScopes { get; init; } = Array.Empty<string>();
 
-    public ThemeRule(string rawSelector, TokenRule rule)
+    public ThemeRule(string rawSelector, TokenRule tokenRule)
     {
         _rawSelector = rawSelector;
-        Rule = rule;
-        _settings = Rule.Settings;
+        TokenRule = tokenRule;
         var rawSelectorPieces = _rawSelector.Split();
         Scope = rawSelectorPieces[^1];
         ParentScopes = rawSelectorPieces[0..(rawSelectorPieces.Length - 1)];

@@ -1,4 +1,4 @@
-﻿const fs = require('fs');
+const fs = require('fs');
 const path = require('path');
 const vsctm = require('vscode-textmate');
 const oniguruma = require('vscode-oniguruma');
@@ -19,7 +19,7 @@ const vscodeOnigurumaLib = oniguruma.loadWASM(wasmBin).then(() => {
     };
 });
 
-const mappings = JSON.parse(fs.readFileSync("./data/scope-grammar-file.json"));
+const mappings = Object.assign({}, ...JSON.parse(fs.readFileSync("./lib/code-highlighting/scope-grammar.json")).map((x)=>({[x.scope]: x.grammar})));
 
 // Create a registry that can create a grammar from a scope name.
 const registry = new vsctm.Registry({
@@ -32,13 +32,14 @@ const registry = new vsctm.Registry({
             return null;
         }
 
-        let grammarFilePath = `./grammars/${grammarFile}`;
+        let grammarFilePath = `./lib/code-highlighting/grammars/${grammarFile}`;
         const data = await readFile(grammarFilePath);
         return vsctm.parseRawGrammar(data.toString(), grammarFilePath);
     }
 });
 
 module.exports = async (code, scopeName) => {
+    debugger
     let tokenWithScopes = []
 
     return registry.loadGrammar(scopeName).then(grammar => {

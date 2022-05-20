@@ -65,50 +65,81 @@ public class HtmlCodeSnippetRenderer : HtmlObjectRenderer<CodeSnippet>
     private const string CSSCodeSnippetRegionStartLineTemplate = "/*<{tagname}>*/";
     private const string CSSCodeSnippetRegionEndLineTemplate = "/*</{tagname}>*/";
 
-    private static readonly Dictionary<string, string[]> s_languageAlias = new()
+    public static readonly Dictionary<string, string[]> LanguageAlias = new()
     {
         { "actionscript", new string[] { "as" } },
+        { "al", Array.Empty<string>() },
+        { "antlr", new string[] { "g", "g4" } },
         { "arduino", new string[] { "ino" } },
+        { "ascii", new string[] { "adoc" } },
         { "assembly", new string[] { "nasm", "asm" } },
+        { "azurecli", new string[] { "cli", "azcli", "azcopy", "azdata", "azsphere" } },
         { "batchfile", new string[] { "bat", "cmd" } },
+        { "bicep", Array.Empty<string>() },
+        { "brainscript", Array.Empty<string>() },
         { "css", Array.Empty<string>() },
-        { "cpp", new string[] { "c", "c++", "objective-c", "obj-c", "objc", "objectivec", "h", "hpp", "cc", "m" } },
-        { "csharp", new string[] { "cs" } },
+        { "cpp", new string[] { "c", "c++", "objective-c", "obj-c", "objc", "objectivec", "h", "hpp", "cc", "m", "cppcx", "cppwinrt" } },
+        { "csharp", new string[] { "cs", "c#" } },
         { "cuda", new string[] { "cu", "cuh" } },
-        { "d", new string[] { "dlang" } },
+        { "d", new string[] { "dlang", "di", "dpp", "d++" } },
+        { "diff", new string[] { "patch" } },
+        { "dockerfile", Array.Empty<string>() },
         { "everything", new string[] { "example" } }, // this is the catch all to try and process unforseen languages
         { "erlang", new string[] { "erl" } },
         { "fsharp", new string[] { "fs", "fsi", "fsx" } },
         { "go", new string[] { "golang" } },
         { "handlebars", new string[] { "hbs" } },
         { "haskell", new string[] { "hs" } },
+        { "hcl", Array.Empty<string>() },
         { "html", new string[] { "jsp", "asp", "aspx", "ascx" } },
+        { "http", new string[] { "ip", "dns", "https", "curl", "url" } },
+        { "inf", Array.Empty<string>() },
+        { "ini", Array.Empty<string>() },
+        { "inkling", new string[] { "ink" } },
         { "cshtml", new string[] { "aspx-cs", "aspx-csharp", "razor" } },
         { "vbhtml", new string[] { "aspx-vb" } },
-        { "java", new string[] { "gradle" } },
-        { "javascript", new string[] { "js", "node", "json" } },
+        { "java", new string[] { "gradle", "protobuf" } },
+        { "javascript", new string[] { "js", "node", "json", "nodejs", "sshconfig" } },
+        { "kotlin", new string[] { "kt" } },
+        { "kusto", Array.Empty<string>() },
+        { "latex", new string[] { "tex" } },
         { "lisp", new string[] { "lsp" } },
+        { "lg", Array.Empty<string>() },
+        { "log", new string[] { "output" } },
+        { "lu", Array.Empty<string>() },
         { "lua", Array.Empty<string>() },
         { "matlab", Array.Empty<string>() },
+        { "markdown", new string[] { "md" } },
         { "pascal", new string[] { "pas" } },
         { "perl", new string[] { "pl" } },
         { "php", Array.Empty<string>() },
-        { "powershell", new string[] { "posh", "ps1" } },
+        { "powerapps", new string[] { "power-fx", "powerapps-comma", "powerapps-dot", "powerappsfl" } },
+        { "powerquery", Array.Empty<string>() },
+        { "powershell", new string[] { "posh", "ps1", "azurepowershell", "console", "dotnetcli", "ps" } },
         { "processing", new string[] { "pde" } },
         { "python", new string[] { "py" } },
         { "r", Array.Empty<string>() },
+        { "qna", Array.Empty<string>() },
+        { "qsharp", new string[] { "qs" } },
         { "react", new string[] { "tsx" } },
+        { "registry", new string[] { "reg" } },
         { "ruby", new string[] { "ru", "erb", "rb", "" } },
         { "rust", new string[] { "rs" } },
         { "scala", Array.Empty<string>() },
-        { "shell", new string[] { "sh", "bash" } },
+        { "shell", new string[] { "sh", "bash", "dbgcmd", "dos", "commmand" } },
+        { "smallbasic", new string[] { "sb" } },
         { "smalltalk", new string[] { "st" } },
-        { "sql", Array.Empty<string>() },
+        { "solidity", new string[] { "sol" } },
+        { "sql", new string[] { "dax", "dmx", "tsql", "hiveql", "odata", "usql" } },
         { "swift", Array.Empty<string>() },
+        { "terraform", new string[] { "tf" } },
         { "typescript", new string[] { "ts" } },
-        { "xaml", Array.Empty<string>() },
-        { "xml", new string[] { "xsl", "xslt", "xsd", "wsdl", "csdl", "edmx", "vsixmanifest" } },
-        { "vb", new string[] { "vbnet", "vbscript", "bas", "vbs", "vba" } },
+
+        // { "usql", Array.Empty<string>() },
+        { "xml", new string[] { "xsl", "xslt", "xsd", "wsdl", "csdl", "edmx", "vsixmanifest", "xaml" } },
+        { "vb", new string[] { "vbnet", "vbscript", "bas", "vbs", "vba", "aspx.vb" } },
+        { "xpp", Array.Empty<string>() },
+        { "yml", new string[] { "yaml" } },
     };
 
     private static readonly Dictionary<string, string> s_languageByFileExtension = new();
@@ -170,7 +201,7 @@ public class HtmlCodeSnippetRenderer : HtmlObjectRenderer<CodeSnippet>
 
         static void BuildFileExtensionLanguageMap()
         {
-            foreach (var (language, aliases) in s_languageAlias)
+            foreach (var (language, aliases) in LanguageAlias)
             {
                 Debug.Assert(!language.StartsWith('.'));
 
@@ -196,7 +227,7 @@ public class HtmlCodeSnippetRenderer : HtmlObjectRenderer<CodeSnippet>
                 AddExtractorItem(language, extractor);
                 AddExtractorItem($".{language}", extractor);
 
-                if (s_languageAlias.TryGetValue(language, out var aliases))
+                if (LanguageAlias.TryGetValue(language, out var aliases))
                 {
                     foreach (var alias in aliases)
                     {

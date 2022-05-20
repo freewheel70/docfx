@@ -22,9 +22,11 @@ internal class ThemeModel
 
     public JObject? ExtensionData { get; init; }
 
-    public string? GetDefaultBackground() => GetDefaultColorByKey("editor.background");
+    public string? GetDefaultBackground() => GetDefaultColorByKey("editor.background") ?? "#ffffff";
 
-    public string? GetDefaultForeground() => GetDefaultColorByKey("editor.foreground");
+    public string? GetDefaultForeground() => GetDefaultColorByKey("editor.foreground") ?? "#000000";
+
+    public static string GetSelectionBackground() => "#264F78";
 
     [OnDeserialized]
     internal void PostProcess(StreamingContext context)
@@ -48,7 +50,7 @@ internal class ThemeModel
             return;
         }
 
-        var themeModel = JsonConvert.DeserializeObject<ThemeModel>(File.ReadAllText(Path.Combine("./theme", Include)));
+        var themeModel = JsonConvert.DeserializeObject<ThemeModel>(File.ReadAllText(Path.Combine("./lib/code-highlighting/theme", Include)));
 
         if (themeModel?.TokenColors is not null)
         {

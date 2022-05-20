@@ -19,10 +19,10 @@ internal class TokenRule
     {
         if (string.IsNullOrEmpty(Name))
         {
-            return $".css-{HashUtility.GetSha256HashShort(string.Join(",", Scope))}";
+            return $"css-{HashUtility.GetSha256HashShort(string.Join(",", Scope))}";
         }
 
-        return $".css-{NormalizeCSSClassName(Name)}";
+        return $"css-{NormalizeCSSClassName(Name)}";
     }
 
     public string GetFontstyleClassName()

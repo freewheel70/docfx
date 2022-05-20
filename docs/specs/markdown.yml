@@ -857,3 +857,46 @@ outputs:
       "conceptual": "<p>Check <span class=\"no-loc\"  dir=\"ltr\" lang=\"en-us\">Find</span> for more details.\nThis method can be ran on Windows, and you can also used it in Azure SDK.</p>\n",
       "no-loc": ["method", "SDK"]
     }
+---
+# poc code coloring (.md file)
+inputs:
+  docfx.yml: |
+    outputType: html
+  a.md: |
+    ```c#
+    Console.WriteLine("Hello, C#!");
+    ```
+outputs:
+  b.json:
+---
+# poc code coloring (SDP file with Markdown components)
+inputs:
+  docfx.yml: |
+    outputType: pageJson
+  index.yml: |
+    #YamlMime:TestPage
+    description: |
+      ```python
+      print("Hello, Python!")
+      ```
+  _themes/ContentTemplate/TestPage.html.primary.js:
+  _themes/ContentTemplate/schemas/TestPage.schema.json: |
+    {
+      "type": "object",
+      "properties": {
+        "description": {"contentType": "Markdown"}
+      }
+    }
+outputs:
+  b.json:
+---
+# poc code coloring (triple colon code snippet extension)
+inputs:
+  docfx.yml: |
+    files: a.md
+  a.md: |
+    :::code language="json" source="b.json" highlight="1-2":::
+  b.json: |
+    { "a": 1 }
+outputs:
+  a.json:
