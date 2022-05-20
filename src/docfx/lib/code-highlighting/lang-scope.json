@@ -1,0 +1,242 @@
+[
+  {
+    "lang": "al",
+    "scope": "source.al"
+  },
+  {
+    "lang": "antlr",
+    "scope": "source.antlr"
+  },
+  {
+    "lang": "vb",
+    "scope": "source.asp.vb.net"
+  },
+  {
+    "lang": "azurecli",
+    "scope": "source.azcli"
+  },
+  {
+    "lang": "batchfile",
+    "scope": "source.batchfile"
+  },
+  {
+    "lang": "bicep",
+    "scope": "source.bicep"
+  },
+  {
+    "lang": "cpp",
+    "scope": "source.cpp"
+  },
+  {
+    "lang": "csharp",
+    "scope": "source.cs"
+  },
+  {
+    "lang": "css",
+    "scope": "source.css"
+  },
+  {
+    "lang": "d",
+    "scope": "source.d"
+  },
+  {
+    "lang": "dax",
+    "scope": "source.dax"
+  },
+  {
+    "lang": "diff",
+    "scope": "diff.tmLanguage"
+  },
+  {
+    "lang": "docker",
+    "scope": "source.dockerfile"
+  },
+  {
+    "lang": "erlang",
+    "scope": "source.erlang"
+  },
+  {
+    "lang": "fsharp",
+    "scope": "source.fsharp"
+  },
+  {
+    "lang": "go",
+    "scope": "source.go"
+  },
+  {
+    "lang": "hcl",
+    "scope": "source.hcl"
+  },
+  {
+    "lang": "http",
+    "scope": "source.http"
+  },
+  {
+    "lang": "inf",
+    "scope": "source.inf"
+  },
+  {
+    "lang": "ini",
+    "scope": "source.ini"
+  },
+  {
+    "lang": "inkling",
+    "scope": "source.ink"
+  },
+  {
+    "lang": "java",
+    "scope": "source.java"
+  },
+  {
+    "lang": "javascript",
+    "scope": "source.js"
+  },
+  {
+    "lang": "kotlin",
+    "scope": "source.kotlin"
+  },
+  {
+    "lang": "kusto",
+    "scope": "source.kusto"
+  },
+  {
+    "lang": "lg",
+    "scope": "source.lg"
+  },
+  {
+    "lang": "lisp",
+    "scope": "source.lisp"
+  },
+  {
+    "lang": "lu",
+    "scope": "source.lu"
+  },
+  {
+    "lang": "pascal",
+    "scope": "source.pascal"
+  },
+  {
+    "lang": "processing",
+    "scope": "source.pde"
+  },
+  {
+    "lang": "perl",
+    "scope": "source.perl"
+  },
+  {
+    "lang": "php",
+    "scope": "source.php"
+  },
+  {
+    "lang": "powerquery",
+    "scope": "source.powerquery"
+  },
+  {
+    "lang": "powershell",
+    "scope": "source.powershell"
+  },
+  {
+    "lang": "python",
+    "scope": "source.python"
+  },
+  {
+    "lang": "qna",
+    "scope": "source.qna"
+  },
+  {
+    "lang": "qsharp",
+    "scope": "source.qsharp"
+  },
+  {
+    "lang": "r",
+    "scope": "source.r"
+  },
+  {
+    "lang": "registry",
+    "scope": "source.reg"
+  },
+  {
+    "lang": "ruby",
+    "scope": "source.ruby"
+  },
+  {
+    "lang": "rust",
+    "scope": "source.rust"
+  },
+  {
+    "lang": "scala",
+    "scope": "source.scala"
+  },
+  {
+    "lang": "smallbasic",
+    "scope": "source.smallbasic"
+  },
+  {
+    "lang": "shell",
+    "scope": "source.shell"
+  },
+  {
+    "lang": "solidity",
+    "scope": "source.solidity"
+  },
+  {
+    "lang": "sql",
+    "scope": "source.sql"
+  },
+  {
+    "lang": "swift",
+    "scope": "source.swift"
+  },
+  {
+    "lang": "terraform",
+    "scope": "source.hcl.terraform"
+  },
+  {
+    "lang": "typescript",
+    "scope": "source.ts"
+  },
+  {
+    "lang": "react",
+    "scope": "source.tsx"
+  },
+  {
+    "lang": "xpp",
+    "scope": "source.xpp"
+  },
+  {
+    "lang": "yml",
+    "scope": "source.yaml"
+  },
+  {
+    "lang": "asciidoc",
+    "scope": "text.asciidoc"
+  },
+  {
+    "lang": "handlebars",
+    "scope": "text.html.handlebars"
+  },
+  {
+    "lang": "html",
+    "scope": "text.html.basic"
+  },
+  {
+    "lang": "cshtml",
+    "scope": "text.html.cshtml"
+  },
+  {
+    "lang": "markdown",
+    "scope": "text.html.markdown"
+  },
+  {
+    "lang": "log",
+    "scope": "text.log"
+  },
+  {
+    "lang": "latex",
+    "scope": "text.tex.latex"
+  },
+  {
+    "lang": "xml",
+    "scope": "text.xml"
+  }
+]

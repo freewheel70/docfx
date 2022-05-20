@@ -1,0 +1,242 @@
+[
+  {
+    "scope": "source.al",
+    "grammar": "alsyntax.tmlanguage"
+  },
+  {
+    "scope": "source.antlr",
+    "grammar": "antlr.json"
+  },
+  {
+    "scope": "source.asp.vb.net",
+    "grammar": "asp-vb-net.tmLanguage.json"
+  },
+  {
+    "scope": "source.azcli",
+    "grammar": "azcli.tmLanguage.json"
+  },
+  {
+    "scope": "source.batchfile",
+    "grammar": "batchfile.tmLanguage.json"
+  },
+  {
+    "scope": "source.bicep",
+    "grammar": "bicep.tmlanguage"
+  },
+  {
+    "scope": "source.cpp",
+    "grammar": "cpp.tmLanguage.json"
+  },
+  {
+    "scope": "source.cs",
+    "grammar": "csharp.tmLanguage.json"
+  },
+  {
+    "scope": "source.css",
+    "grammar": "css.tmLanguage.json"
+  },
+  {
+    "scope": "source.d",
+    "grammar": "d.json,"
+  },
+  {
+    "scope": "source.dax",
+    "grammar": "dax.tmLanguage.json"
+  },
+  {
+    "scope": "source.diff",
+    "grammar": "diff.tmLanguage"
+  },
+  {
+    "scope": "source.dockerfile",
+    "grammar": "docker.tmLanguage.json"
+  },
+  {
+    "scope": "source.erlang",
+    "grammar": "Erlang.plist"
+  },
+  {
+    "scope": "source.fsharp",
+    "grammar": "fsharp.tmLanguage.json"
+  },
+  {
+    "scope": "source.go",
+    "grammar": "go.tmLanguage.json"
+  },
+  {
+    "scope": "source.hcl",
+    "grammar": "hcl.tmGrammar.json"
+  },
+  {
+    "scope": "source.http",
+    "grammar": "http.tmLanguage.json"
+  },
+  {
+    "scope": "source.inf",
+    "grammar": "inf.tmLanguage.json"
+  },
+  {
+    "scope": "source.ini",
+    "grammar": "ini.tmLanguage.json"
+  },
+  {
+    "scope": "source.ink",
+    "grammar": "inkling.tmLanguage.json"
+  },
+  {
+    "scope": "source.java",
+    "grammar": "java.tmLanguage.json"
+  },
+  {
+    "scope": "source.js",
+    "grammar": "JavaScript.tmLanguage.json"
+  },
+  {
+    "scope": "source.kotlin",
+    "grammar": "Kotlin.tmLanguage"
+  },
+  {
+    "scope": "source.kusto",
+    "grammar": "kusto.tmLanguage"
+  },
+  {
+    "scope": "source.lg",
+    "grammar": "lg.tmLanguage.json"
+  },
+  {
+    "scope": "source.lisp",
+    "grammar": "Lisp.tmLanguage"
+  },
+  {
+    "scope": "source.lu",
+    "grammar": "lu.tmLanguage.json"
+  },
+  {
+    "scope": "source.pascal",
+    "grammar": "pascal.tmLanguage"
+  },
+  {
+    "scope": "source.pde",
+    "grammar": "pde.tmLanguage"
+  },
+  {
+    "scope": "source.perl",
+    "grammar": "perl.tmLanguage.json"
+  },
+  {
+    "scope": "source.php",
+    "grammar": "php.tmLanguage.json"
+  },
+  {
+    "scope": "source.powerquery",
+    "grammar": "powerquery.tmLanguage.json"
+  },
+  {
+    "scope": "source.powershell",
+    "grammar": "powershell.tmLanguage.json"
+  },
+  {
+    "scope": "source.python",
+    "grammar": "MagicPython.tmLanguage.json"
+  },
+  {
+    "scope": "source.qna",
+    "grammar": "qna.tmLanguage.json"
+  },
+  {
+    "scope": "source.qsharp",
+    "grammar": "qsharp.tmLanguage.json"
+  },
+  {
+    "scope": "source.r",
+    "grammar": "r.tmLanguage.json"
+  },
+  {
+    "scope": "source.reg",
+    "grammar": "reg.tmLanguage"
+  },
+  {
+    "scope": "source.ruby",
+    "grammar": "ruby.tmLanguage.json"
+  },
+  {
+    "scope": "source.rust",
+    "grammar": "rust.tmLanguage.json"
+  },
+  {
+    "scope": "source.scala",
+    "grammar": "scala.tmLanguage.json"
+  },
+  {
+    "scope": "source.smallbasic",
+    "grammar": "smallbasic.tmLanguage.json"
+  },
+  {
+    "scope": "source.shell",
+    "grammar": "shell-unix-bash.tmLanguage.json"
+  },
+  {
+    "scope": "source.solidity",
+    "grammar": "solidity.json"
+  },
+  {
+    "scope": "source.sql",
+    "grammar": "sql.tmLanguage.json"
+  },
+  {
+    "scope": "source.swift",
+    "grammar": "swift.tmLanguage.json"
+  },
+  {
+    "scope": "source.hcl.terraform",
+    "grammar": "terraform.tmGrammar.json"
+  },
+  {
+    "scope": "source.ts",
+    "grammar": "TypeScript.tmLanguage.json"
+  },
+  {
+    "scope": "source.tsx",
+    "grammar": "TypeScriptReact.tmLanguage.json"
+  },
+  {
+    "scope": "source.xpp",
+    "grammar": "xpp.csharp.tmLanguage"
+  },
+  {
+    "scope": "source.yaml",
+    "grammar": "yaml.tmLanguage.json"
+  },
+  {
+    "scope": "text.asciidoc",
+    "grammar": "Asciidoctor.json"
+  },
+  {
+    "scope": "text.html.handlebars",
+    "grammar": "Handlebars.tmLanguage.json"
+  },
+  {
+    "scope": "text.html.basic",
+    "grammar": "html.tmLanguage.json"
+  },
+  {
+    "scope": "text.html.cshtml",
+    "grammar": "cshtml.tmLanguage.json"
+  },
+  {
+    "scope": "text.html.markdown",
+    "grammar": "markdown.tmLanguage.json"
+  },
+  {
+    "scope": "text.log",
+    "grammar": "log.tmLanguage.json"
+  },
+  {
+    "scope": "text.tex.latex",
+    "grammar": "LaTex.tmLanguage.json"
+  },
+  {
+    "scope": "text.xml",
+    "grammar": "xml.tmLanguage.json"
+  }
+]
