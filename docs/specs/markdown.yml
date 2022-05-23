@@ -723,7 +723,8 @@ inputs:
     ```
 outputs:
   a.json: |
-    { "conceptual": "<pre><code class=\"lang-json\">a\n</code></pre>\n<pre><code class=\"lang-yml\">b\n</code></pre>" }
+    { "conceptual": "<pre><code class=\"lang-json\"><span class=\"css-editor-background\"><span class=\"css-variable-and-parameter-name\">a</span><br><span class=\"css-default-foreground-color\"></span><br></span></code></pre>
+      <pre><code class=\"lang-yml\"><span class=\"css-editor-background\"><span class=\"css-1ce30dd45a0b8e3ec7c5fec08d8f8a00\">b</span><br><span class=\"css-default-foreground-color\"></span><br></span></code></pre>" }
 ---
 # Triple colon image extension in included file
 inputs:
@@ -747,7 +748,22 @@ inputs:
     { "a": 1 }
 outputs:
   a.json: |
-    { "conceptual": "<pre><code class=\"lang-json\" highlight-lines=\"1-2\">{ &quot;a&quot;: 1 }</code></pre>" }
+    { "conceptual": "
+        <pre><code class=\"lang-json\" highlight-lines=\"1-2\">
+        <span class=\"css-editor-background\">
+        <span class=\"css-editor-selectionbackground\">
+        <span class=\"css-default-foreground-color\">{</span>
+        <span class=\"css-default-foreground-color\"> </span>
+        <span class=\"css-1ce30dd45a0b8e3ec7c5fec08d8f8a00\">&quot;</span>
+        <span class=\"css-1ce30dd45a0b8e3ec7c5fec08d8f8a00\">a</span>
+        <span class=\"css-1ce30dd45a0b8e3ec7c5fec08d8f8a00\">&quot;</span>
+        <span class=\"css-default-foreground-color\">: </span>
+        <span class=\"css-d261c5285de4da3a334d251cc7712a4d\">1</span>
+        <span class=\"css-default-foreground-color\"> </span>
+        <span class=\"css-default-foreground-color\">}</span></span><br>
+        <span class=\"css-editor-selectionbackground\">
+        <span class=\"css-default-foreground-color\"></span></span><br>
+        </span></code></pre>" }
 ---
 # Handle inline include with multiple paragraphs
 inputs:
@@ -861,42 +877,168 @@ outputs:
 # poc code coloring (.md file)
 inputs:
   docfx.yml: |
-    outputType: html
+    outputType: pageJson
   a.md: |
     ```c#
+    var set = new HashSet<int>() {1, 2, 3};
     Console.WriteLine("Hello, C#!");
     ```
 outputs:
-  b.json:
+  a.mta.json:
+  a.raw.page.json: |
+    {
+      "content":"<pre><code class=\"lang-c#\">
+        <span class=\"css-editor-background\">
+            <span class=\"css-d6d198dd68bbff3e3fef3ae8aa7c4d96\">var</span>
+            <span class=\"css-default-foreground-color\"> </span>
+            <span class=\"css-variable-and-parameter-name\">set</span>
+            <span class=\"css-default-foreground-color\"> </span>
+            <span class=\"css-8a4f8efb5683a91db560e0a499163ac1\">=</span>
+            <span class=\"css-default-foreground-color\"> </span>
+            <span class=\"css-d6d198dd68bbff3e3fef3ae8aa7c4d96\">new</span>
+            <span class=\"css-default-foreground-color\"> </span>
+            <span class=\"css-types-declaration-and-references\">HashSet</span>
+            <span class=\"css-default-foreground-color\">&lt;</span>
+            <span class=\"css-d6d198dd68bbff3e3fef3ae8aa7c4d96\">int</span>
+            <span class=\"css-default-foreground-color\">&gt;</span>
+            <span class=\"css-default-foreground-color\">(</span>
+            <span class=\"css-default-foreground-color\">)</span>
+            <span class=\"css-default-foreground-color\"> </span>
+            <span class=\"css-default-foreground-color\">{</span>
+            <span class=\"css-d261c5285de4da3a334d251cc7712a4d\">1</span>
+            <span class=\"css-default-foreground-color\">,</span>
+            <span class=\"css-default-foreground-color\"> </span>
+            <span class=\"css-d261c5285de4da3a334d251cc7712a4d\">2</span>
+            <span class=\"css-default-foreground-color\">,</span>
+            <span class=\"css-default-foreground-color\"> </span>
+            <span class=\"css-d261c5285de4da3a334d251cc7712a4d\">3</span>
+            <span class=\"css-default-foreground-color\">}</span>
+            <span class=\"css-default-foreground-color\">;</span><br />
+            <span class=\"css-variable-and-parameter-name\">Console</span>
+            <span class=\"css-default-foreground-color\">.</span>
+            <span class=\"css-function-declarations\">WriteLine</span>
+            <span class=\"css-default-foreground-color\">(</span>
+            <span class=\"css-1ce30dd45a0b8e3ec7c5fec08d8f8a00\">&quot;</span>
+            <span class=\"css-1ce30dd45a0b8e3ec7c5fec08d8f8a00\">Hello, C#!</span>
+            <span class=\"css-1ce30dd45a0b8e3ec7c5fec08d8f8a00\">&quot;</span>
+            <span class=\"css-default-foreground-color\">)</span>
+            <span class=\"css-default-foreground-color\">;</span><br />
+            <span class=\"css-default-foreground-color\"></span><br />
+        </span>
+        </code>
+        </pre>"
+    }
 ---
 # poc code coloring (SDP file with Markdown components)
 inputs:
   docfx.yml: |
-    outputType: pageJson
+    outputType: json
   index.yml: |
     #YamlMime:TestPage
     description: |
       ```python
       print("Hello, Python!")
       ```
-  _themes/ContentTemplate/TestPage.html.primary.js:
+      ```html
+      <p syle="color:red"> Hello, world. </p>
+      ```
+    summary: test
   _themes/ContentTemplate/schemas/TestPage.schema.json: |
     {
       "type": "object",
       "properties": {
-        "description": {"contentType": "Markdown"}
+        "description": {"contentType": "Markdown"},
+        "summary": {"contentType": "string"}
       }
     }
+  _themes/ContentTemplate/TestPage.html.primary.js:
 outputs:
-  b.json:
+  index.json: |
+   {
+    "description": "<pre><code class=\"lang-python\">
+    <span class=\"css-editor-background\">
+    <span class=\"css-function-declarations\">print</span>
+    <span class=\"css-default-foreground-color\">(</span>
+    <span class=\"css-1ce30dd45a0b8e3ec7c5fec08d8f8a00\">&quot;</span>
+    <span class=\"css-1ce30dd45a0b8e3ec7c5fec08d8f8a00\">Hello, Python!</span>
+    <span class=\"css-1ce30dd45a0b8e3ec7c5fec08d8f8a00\">&quot;</span>
+    <span class=\"css-default-foreground-color\">)</span><br>
+    <span class=\"css-default-foreground-color\"></span><br>
+    </span></code></pre>
+    <pre><code class=\"lang-html\">
+    <span class=\"css-editor-background\">
+    <span class=\"css-brackets-of-xml-html-tags\">&lt;</span>
+    <span class=\"css-d7b288e9900d5fe9c30ac2a3b56c14e9\">p</span>
+    <span class=\"css-default-foreground-color\"> </span>
+    <span class=\"css-2cd208b9eb5cd1b3d1de20abe99441f9\">syle</span>
+    <span class=\"css-default-foreground-color\">=</span>
+    <span class=\"css-1ce30dd45a0b8e3ec7c5fec08d8f8a00\">&quot;</span>
+    <span class=\"css-1ce30dd45a0b8e3ec7c5fec08d8f8a00\">color:red</span>
+    <span class=\"css-1ce30dd45a0b8e3ec7c5fec08d8f8a00\">&quot;</span>
+    <span class=\"css-brackets-of-xml-html-tags\">&gt;</span>
+    <span class=\"css-default-foreground-color\"> Hello, world. </span>
+    <span class=\"css-brackets-of-xml-html-tags\">&lt;/</span>
+    <span class=\"css-d7b288e9900d5fe9c30ac2a3b56c14e9\">p</span>
+    <span class=\"css-brackets-of-xml-html-tags\">&gt;</span><br>
+    <span class=\"css-default-foreground-color\"></span><br>
+    </span></code></pre>"
+   }
 ---
 # poc code coloring (triple colon code snippet extension)
 inputs:
   docfx.yml: |
     files: a.md
+    outputType: pageJson
   a.md: |
-    :::code language="json" source="b.json" highlight="1-2":::
-  b.json: |
-    { "a": 1 }
+    :::code language="python" source="b.py" highlight="2-3":::
+  b.py: |
+    import numpy as np
+    a = np.zeros((9, 10))
+    mean = np.mean(a, aixs=1)
 outputs:
-  a.json:
+  a.mta.json:
+  a.raw.page.json: |
+   {
+    "content": "<pre><code class=\"lang-python\" highlight-lines=\"2-3\"><span class=\"css-editor-background\">
+            <span class=\"css-control-flow-special-keywords\">import</span>
+            <span class=\"css-default-foreground-color\"> </span>
+            <span class=\"css-default-foreground-color\">numpy</span>
+            <span class=\"css-default-foreground-color\"> </span>
+            <span class=\"css-control-flow-special-keywords\">as</span>
+            <span class=\"css-default-foreground-color\"> </span>
+            <span class=\"css-default-foreground-color\">np</span><br>
+            <span class=\"css-editor-selectionbackground\">
+            <span class=\"css-default-foreground-color\">a</span>
+            <span class=\"css-default-foreground-color\"> </span>
+            <span class=\"css-8a4f8efb5683a91db560e0a499163ac1\">=</span>
+            <span class=\"css-default-foreground-color\"> </span>
+            <span class=\"css-default-foreground-color\">np</span>
+            <span class=\"css-default-foreground-color\">.</span>
+            <span class=\"css-default-foreground-color\">zeros</span>
+            <span class=\"css-default-foreground-color\">(</span>
+            <span class=\"css-default-foreground-color\">(</span>
+            <span class=\"css-d261c5285de4da3a334d251cc7712a4d\">9</span>
+            <span class=\"css-default-foreground-color\">,</span>
+            <span class=\"css-default-foreground-color\"> </span>
+            <span class=\"css-d261c5285de4da3a334d251cc7712a4d\">10</span>
+            <span class=\"css-default-foreground-color\">)</span>
+            <span class=\"css-default-foreground-color\">)</span></span><br>
+            <span class=\"css-editor-selectionbackground\">
+            <span class=\"css-default-foreground-color\">mean</span>
+            <span class=\"css-default-foreground-color\"> </span>
+            <span class=\"css-8a4f8efb5683a91db560e0a499163ac1\">=</span>
+            <span class=\"css-default-foreground-color\"> </span>
+            <span class=\"css-default-foreground-color\">np</span>
+            <span class=\"css-default-foreground-color\">.</span><span class=\"css-default-foreground-color\">mean</span>
+            <span class=\"css-default-foreground-color\">(</span>
+            <span class=\"css-default-foreground-color\">a</span>
+            <span class=\"css-default-foreground-color\">,</span>
+            <span class=\"css-default-foreground-color\"> </span>
+            <span class=\"css-variable-and-parameter-name\">aixs</span>
+            <span class=\"css-8a4f8efb5683a91db560e0a499163ac1\">=</span>
+            <span class=\"css-d261c5285de4da3a334d251cc7712a4d\">1</span>
+            <span class=\"css-default-foreground-color\">)</span></span><br>
+            <span class=\"css-default-foreground-color\"></span><br>
+            </span>
+        </code></pre>"
+   }

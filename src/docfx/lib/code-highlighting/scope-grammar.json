@@ -9,7 +9,7 @@
   },
   {
     "scope": "source.asp.vb.net",
-    "grammar": "asp-vb-net.tmLanguage.json"
+    "grammar": "asp-vb-net.tmlanguage.json"
   },
   {
     "scope": "source.azcli",
@@ -37,7 +37,7 @@
   },
   {
     "scope": "source.d",
-    "grammar": "d.json,"
+    "grammar": "d.json"
   },
   {
     "scope": "source.dax",
@@ -165,7 +165,7 @@
   },
   {
     "scope": "source.scala",
-    "grammar": "scala.tmLanguage.json"
+    "grammar": "Scala.tmLanguage.json"
   },
   {
     "scope": "source.smallbasic",
@@ -233,7 +233,7 @@
   },
   {
     "scope": "text.tex.latex",
-    "grammar": "LaTex.tmLanguage.json"
+    "grammar": "LaTeX.tmLanguage.json"
   },
   {
     "scope": "text.xml",

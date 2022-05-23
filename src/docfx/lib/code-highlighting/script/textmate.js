@@ -25,7 +25,6 @@ const mappings = Object.assign({}, ...JSON.parse(fs.readFileSync("./lib/code-hig
 const registry = new vsctm.Registry({
     onigLib: vscodeOnigurumaLib,
     loadGrammar: async (scopeName) => {
-        debugger;
         let grammarFile = mappings[scopeName];
 
         if (grammarFile === undefined){

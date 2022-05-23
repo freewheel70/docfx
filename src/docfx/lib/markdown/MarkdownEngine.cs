@@ -83,7 +83,7 @@ internal class MarkdownEngine
         }
     }
 
-    public string? ToHtml(
+    public string ToHtml(
         ErrorBuilder errors,
         string markdown,
         SourceInfo sourceInfo,
@@ -100,7 +100,7 @@ internal class MarkdownEngine
                 s_status.Value!.Push(status);
 
                 var html = Markdown.ToHtml(markdown, _pipelines[(int)pipelineType]);
-                html = new CodeSnippetHelper(errors).ApplyThemeForCodeSnippetsAsync(html).Result;
+                html = new CodeSnippetHelper(errors).ApplyThemeForCodeSnippets(html);
                 return html;
             }
             finally

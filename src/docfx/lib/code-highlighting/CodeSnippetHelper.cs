@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license. See LICENSE file in the project root for full license information.
-using HtmlAgilityPack;
+using System.Text;
+using System.Web;
+using HtmlReaderWriter;
 using Microsoft.Docs.MarkdigExtensions;
 
 namespace Microsoft.Docs.Build;
@@ -28,35 +30,58 @@ internal class CodeSnippetHelper
             errors, File.ReadAllText(LanguageScopenameConfigPath), new FilePath(LanguageScopenameConfigPath));
     }
 
-    public async Task<string?> ApplyThemeForCodeSnippetsAsync(string html)
+    public string ApplyThemeForCodeSnippets(string html)
     {
         if (string.IsNullOrEmpty(html))
         {
             return "";
         }
-
-        var htmlDocument = new HtmlDocument();
-        htmlDocument.LoadHtml(html);
-
-        var preNodes = htmlDocument.DocumentNode.Descendants("pre");
-
-        foreach (var node in preNodes)
+        var sb = new StringBuilder();
+        var reader = new HtmlReader(html);
+        var inCodeBlock = false;
+        var scopeName = string.Empty;
+        var highlightLines = new HashSet<int>();
+        while (reader.Read(out var token))
         {
-            foreach (var code in node.ChildNodes)
+            if (token.Type == HtmlTokenType.StartTag && token.Name.ToString().Equals("code", StringComparison.OrdinalIgnoreCase))
             {
-                if (code.Name == "code")
+                inCodeBlock = true;
+                foreach (var attr in token.Attributes.ToArray())
                 {
-                    var scopeName = GetScopeName(code.GetAttributeValue("class", "plaintext"));
-                    var highlightLines = GetHighlightLines(code.GetAttributeValue("highlight-lines", string.Empty));
-                    if (!string.IsNullOrEmpty(scopeName))
+                    if (attr.Name.ToString().Equals("class", StringComparison.OrdinalIgnoreCase))
                     {
-                        code.InnerHtml = await _textmateEngine.ApplyCSSClassForCodeSnippetAsync(code.InnerHtml, scopeName, highlightLines);
+                        scopeName = GetScopeName(attr.Value.ToString());
+                    }
+
+                    if (attr.Name.ToString().Equals("highlight-lines", StringComparison.OrdinalIgnoreCase))
+                    {
+                        highlightLines = GetHighlightLines(attr.Value.ToString());
                     }
                 }
+                sb.Append(token.RawText);
+            }
+            else if (inCodeBlock)
+            {
+                if (token.Type == HtmlTokenType.Text && !string.IsNullOrEmpty(scopeName))
+                {
+                    sb.Append(_textmateEngine.ApplyCSSClassForCodeSnippetAsync(
+                        HttpUtility.HtmlDecode(token.RawText.ToString()), scopeName, highlightLines).Result);
+                }
+                else
+                {
+                    sb.Append(token.RawText);
+                    inCodeBlock = false;
+                    scopeName = string.Empty;
+                    highlightLines = new HashSet<int>();
+                }
+            }
+            else
+            {
+                sb.Append(token.RawText);
             }
         }
 
-        return htmlDocument.Text;
+        return sb.ToString();
     }
 
     private string? GetScopeName(string? attr)

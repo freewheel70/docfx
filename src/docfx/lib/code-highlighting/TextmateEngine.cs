@@ -31,8 +31,7 @@ internal class TextmateEngine
         string scopeName,
         HashSet<int> highlightLines)
     {
-        var curr = Directory.GetCurrentDirectory();
-        var tokenWithScopes = await s_nodeService.InvokeFromFileAsync<TextmateToken[]>("./lib/code-highlighting/script/textmate.js", args: new string[] { code, scopeName });
+        var tokenWithScopes = await s_nodeService.InvokeFromFileAsync<TextmateToken[]>(ScriptPath, args: new string[] { code, scopeName });
         var contentStringBuilder = new StringBuilder();
 
         if (tokenWithScopes is null)
@@ -67,7 +66,7 @@ internal class TextmateEngine
                 }
 
                 var colorRule = ThemeMatching.FindMatchingRule(_themeModel, token.Scopes!, true);
-                var colorClass = colorRule?.TokenRule.GetCSSClassName() ?? ".css-default-foreground-color";
+                var colorClass = colorRule?.TokenRule.GetCSSClassName() ?? "css-default-foreground-color";
 
                 var style = new StringBuilder(colorClass);
 
@@ -78,7 +77,7 @@ internal class TextmateEngine
                 }
 
                 contentStringBuilder.Append(
-                    $@"<span class=""{style.ToString()}"">{token.Content.Replace(" ", "&nbsp;").Replace("<", "&lt;").Replace(">", "&gt;")}</span>");
+                    $@"<span class=""{style.ToString()}"">{HtmlUtility.Encode(token.Content).Replace("<", "&lt;").Replace(">", "&gt;")}</span>");
                 cur = end;
             }
             if (highlightLines.Contains(i + 1))
