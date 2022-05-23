@@ -22,11 +22,12 @@ internal class ThemeModel
 
     public JObject? ExtensionData { get; init; }
 
-    public string? GetDefaultBackground() => GetDefaultColorByKey("editor.background") ?? "#ffffff";
+    public string GetDefaultBackground() => GetDefaultColorByKey("editor.background") ?? "#ffffff";
 
-    public string? GetDefaultForeground() => GetDefaultColorByKey("editor.foreground") ?? "#000000";
+    public string GetDefaultForeground() => GetDefaultColorByKey("editor.foreground") ?? "#000000";
 
-    public static string GetSelectionBackground() => "#264F78";
+    // https://github.com/microsoft/vscode/blob/15e4ae374b642d60604b9ece83f5a077cad86278/src/vs/platform/theme/common/colorRegistry.ts#L346
+    public static string GetDefaultSelectionBackground() => "#264F78";
 
     [OnDeserialized]
     internal void PostProcess(StreamingContext context)

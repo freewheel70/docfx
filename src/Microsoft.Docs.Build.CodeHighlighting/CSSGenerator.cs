@@ -13,14 +13,21 @@ internal class CSSGenerator
     {
         using var fs = new StreamWriter(Filename, true);
 
+        await fs.WriteLineAsync($".css-editor-background {{ background-color: {model.GetDefaultBackground()} }}");
+        await fs.WriteLineAsync($".css-default-foreground-color {{ color: {model.GetDefaultForeground()} }}");
+        await fs.WriteLineAsync($".css-editor-selectionbackground {{ background-color: {ThemeModel.GetDefaultSelectionBackground()} }}");
+
         foreach (var tokenRule in model.TokenColors)
         {
             var cssClassName = tokenRule.GetCSSClassName();
             var fontstyleClassName = tokenRule.GetFontstyleClassName();
 
-            await fs.WriteLineAsync($"{cssClassName} {{");
+            await fs.WriteLineAsync($".{cssClassName} {{");
             await fs.WriteLineAsync($"  color: {tokenRule.Settings.Foreground ?? model.GetDefaultForeground()};");
-            await fs.WriteLineAsync($"  background-color: {tokenRule.Settings.Background ?? model.GetDefaultBackground()};");
+            if (!string.IsNullOrEmpty(tokenRule.Settings.Background))
+            {
+                await fs.WriteLineAsync($"  background-color: {tokenRule.Settings.Background};");
+            }
             await fs.WriteLineAsync("}");
 
             var fontstyleSet = tokenRule.Settings.FontstyleSet;
@@ -29,7 +36,7 @@ internal class CSSGenerator
                 continue;
             }
 
-            await fs.WriteLineAsync($"{fontstyleClassName} {{");
+            await fs.WriteLineAsync($".{fontstyleClassName} {{");
 
             foreach (var fontstyle in fontstyleSet)
             {
