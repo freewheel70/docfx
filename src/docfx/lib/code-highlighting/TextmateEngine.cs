@@ -39,7 +39,7 @@ internal class TextmateEngine
             return contentStringBuilder.ToString();
         }
 
-        contentStringBuilder.Append($@"<span class=""css-editor-background"">");
+        contentStringBuilder.Append($@"<div class=""css-editor-background"">");
 
         for (var i = 0; i < tokenWithScopes.Length; i++)
         {
@@ -87,7 +87,7 @@ internal class TextmateEngine
             contentStringBuilder.Append("<br>");
         }
 
-        contentStringBuilder.Append("</span>");
+        contentStringBuilder.Append("</div>");
 
         return contentStringBuilder.ToString();
     }
