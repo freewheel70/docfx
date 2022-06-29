@@ -16,7 +16,7 @@ $defaultTemplate ="$templateHome\default"
 
 # Prepare default templates
 Set-Location $defaultTemplate
-npm install $logLevelParam
+npm install $logLevelParam --location=local
 $cleanCssCommand="$defaultTemplate\node_modules\clean-css-cli\bin\cleancss"
 $terserCommand="$defaultTemplate\node_modules\terser\bin\terser"
 $vendor = @{
