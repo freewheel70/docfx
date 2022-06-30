@@ -19,6 +19,11 @@ steps:
   inputs:
     versionSpec: 5.9.1
 
+- task: NodeTool@0
+  displayName: "Use Node 16.x"
+  inputs:
+    versionSpec: 16.x
+
 - task: PowerShell@2
   displayName: 'dev build'
   inputs:
