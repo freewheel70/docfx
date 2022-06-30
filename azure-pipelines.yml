@@ -26,7 +26,7 @@ steps:
 
 - powershell: |
     npm install -g npm-windows-upgrade
-    npm-windows-upgrade
+    npm-windows-upgrade -v 8.13.2
     npm -v
 
 - task: PowerShell@2
