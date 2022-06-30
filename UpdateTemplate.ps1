@@ -6,6 +6,9 @@ if (-not (Get-Command "node" -ErrorAction SilentlyContinue)) {
     exit 1
 }
 
+# https://github.com/PowerShell/Phosphor/issues/26#issuecomment-299702987
+$logLevelParam = if ($env:TF_BUILD -eq "True") { "--loglevel=error" } else { "" }
+
 Push-Location $PSScriptRoot
 
 $templateHome ="$PSScriptRoot\src\docfx.website.themes"
@@ -13,8 +16,7 @@ $defaultTemplate ="$templateHome\default"
 
 # Prepare default templates
 Set-Location $defaultTemplate
-Write-Host "npm install"
-npm install
+npm install $logLevelParam
 $cleanCssCommand="$defaultTemplate\node_modules\clean-css-cli\bin\cleancss"
 $terserCommand="$defaultTemplate\node_modules\terser\bin\terser"
 $vendor = @{
