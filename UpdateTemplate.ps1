@@ -13,6 +13,7 @@ $defaultTemplate ="$templateHome\default"
 
 # Prepare default templates
 Set-Location $defaultTemplate
+Write-Host "npm install"
 npm install
 $cleanCssCommand="$defaultTemplate\node_modules\clean-css-cli\bin\cleancss"
 $terserCommand="$defaultTemplate\node_modules\terser\bin\terser"
